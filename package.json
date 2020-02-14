@@ -1,0 +1,9 @@
+{
+  "name": "vue-dynamodb-example",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "dependencies": {
+    "nuxt": "^2.11.0"
+  }
+}
