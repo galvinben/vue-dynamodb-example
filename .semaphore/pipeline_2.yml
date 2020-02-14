@@ -13,6 +13,8 @@ blocks:
             - yarn global add nuxt
             - nuxt generate
             - 'aws s3 cp dist s3://vue-dynamodb-example --recursive'
+      secrets:
+        - name: aws-credentials
 agent:
   machine:
     type: e1-standard-2
