@@ -6,9 +6,9 @@ blocks:
       jobs:
         - name: Generate and deploy
           commands:
+            - sem-version node 10
             - checkout
-            - nvm install 10
-            - nvm use 10
+            - ls
             - yarn install
             - nuxt generate
             - 'aws s3 cp dist s3://vue-dynamodb-example --recursive'
