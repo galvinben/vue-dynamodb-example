@@ -10,6 +10,7 @@ blocks:
             - checkout
             - ls
             - yarn install
+            - yarn add nuxt
             - nuxt generate
             - 'aws s3 cp dist s3://vue-dynamodb-example --recursive'
 agent:
