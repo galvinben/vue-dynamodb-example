@@ -9,7 +9,7 @@ blocks:
             - checkout
             - yarn install
             - yarn run generate
-            - 'aws s3 cp dist s3://yourdomain.com --recursive'
+            - 'aws s3 cp dist s3://vue-dynamodb-example --recursive'
 agent:
   machine:
     type: e1-standard-2
