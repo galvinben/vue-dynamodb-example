@@ -4,7 +4,7 @@ blocks:
   - name: Deploy
     task:
       jobs:
-        - name: Generate and deploy
+        - name: Generate and deploy UI
           commands:
             - sem-version node 10
             - checkout
@@ -13,6 +13,12 @@ blocks:
             - yarn global add nuxt
             - nuxt generate
             - 'aws s3 cp dist s3://vue-dynamodb-example --recursive'
+        - name: Zip and deploy Lambda
+          commands:
+            - checkout
+            - GOOS=linux GOARCH=amd64 go build -o main main.go
+            - zip main.zip main
+            - 'aws lambda update-function-code --function-name vue-dynamodb-example --zip-file main.zip'
       secrets:
         - name: aws-credentials
 agent:

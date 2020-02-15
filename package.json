@@ -4,6 +4,8 @@
     "dev": "nuxt"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.9.5",
+    "@nuxtjs/vuetify": "^1.10.3",
     "nuxt": "^2.11.0"
   }
 }

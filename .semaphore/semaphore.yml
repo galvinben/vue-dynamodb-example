@@ -13,6 +13,6 @@ blocks:
             - checkout
 promotions:
   - name: Deploy
-    pipeline_file: pipeline_2.yml
+    pipeline_file: deploy.yml
     auto_promote:
       when: branch = 'master' AND result = 'passed'
