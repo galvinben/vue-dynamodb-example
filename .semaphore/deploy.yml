@@ -1,7 +1,7 @@
 version: v1.0
-name: Pipeline 2
+name: Deploy
 blocks:
-  - name: Deploy
+  - name: Deploy UI
     task:
       jobs:
         - name: Generate and deploy UI
@@ -13,9 +13,20 @@ blocks:
             - yarn global add nuxt
             - nuxt generate
             - 'aws s3 cp dist s3://vue-dynamodb-example --recursive'
+      secrets:
+        - name: aws-credentials
+  - name: Deploy Lambda
+    task:
+      prologue:
+        commands:
+          - export "SEMAPHORE_GIT_DIR=$(go env GOPATH)/src/github.com/${SEMAPHORE_PROJECT_NAME}"
+          - export "PATH=$(go env GOPATH)/bin:${PATH}"
+          - mkdir -vp "${SEMAPHORE_GIT_DIR}" "$(go env GOPATH)/bin"
+      jobs:
         - name: Zip and deploy Lambda
           commands:
             - checkout
+            - go get
             - GOOS=linux GOARCH=amd64 go build -o main main.go
             - zip main.zip main
             - 'aws lambda update-function-code --function-name vue-dynamodb-example --zip-file main.zip'
