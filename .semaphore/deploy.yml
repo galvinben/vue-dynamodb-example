@@ -34,7 +34,7 @@ blocks:
             - zip main.zip main
             - >-
               aws lambda update-function-code --function-name
-              vue-dynamodb-example --zip-file main.zip
+              vue-dynamodb-example --zip-file fileb://main.zip
       secrets:
         - name: aws-credentials
     dependencies: []
