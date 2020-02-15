@@ -15,13 +15,16 @@ blocks:
             - 'aws s3 cp dist s3://vue-dynamodb-example --recursive'
       secrets:
         - name: aws-credentials
+    dependencies: []
   - name: Deploy Lambda
     task:
       prologue:
         commands:
-          - export "SEMAPHORE_GIT_DIR=$(go env GOPATH)/src/github.com/${SEMAPHORE_PROJECT_NAME}"
-          - export "PATH=$(go env GOPATH)/bin:${PATH}"
-          - mkdir -vp "${SEMAPHORE_GIT_DIR}" "$(go env GOPATH)/bin"
+          - >-
+            export "SEMAPHORE_GIT_DIR=$(go env
+            GOPATH)/src/github.com/${SEMAPHORE_PROJECT_NAME}"
+          - 'export "PATH=$(go env GOPATH)/bin:${PATH}"'
+          - 'mkdir -vp "${SEMAPHORE_GIT_DIR}" "$(go env GOPATH)/bin"'
       jobs:
         - name: Zip and deploy Lambda
           commands:
@@ -29,9 +32,12 @@ blocks:
             - go get
             - GOOS=linux GOARCH=amd64 go build -o main main.go
             - zip main.zip main
-            - 'aws lambda update-function-code --function-name vue-dynamodb-example --zip-file main.zip'
+            - >-
+              aws lambda update-function-code --function-name
+              vue-dynamodb-example --zip-file main.zip
       secrets:
         - name: aws-credentials
+    dependencies: []
 agent:
   machine:
     type: e1-standard-2
