@@ -16,9 +16,9 @@ import (
 )
 
 type Thing struct {
-	Name     string `json:"name"`
-	Info     string `json:"info"`
-	Category string `json:"category"`
+	Name     string `json:"Name"`
+	Info     string `json:"Info"`
+	Category string `json:"Category"`
 }
 
 type Things []Thing
