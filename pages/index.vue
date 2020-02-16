@@ -1,13 +1,18 @@
 <template>
-  <Form :list="list"></Form>
+  <div>
+    <List :list="list"></List>
+    <Add></Add>
+  </div>
 </template>
 
 <script>
-import Form from '~/components/Form'
+import List from '~/components/List'
+import Add from '~/components/Add'
 
 export default {
   components: {
-    Form
+    List,
+    Add
   },
 
   data: () => ({
