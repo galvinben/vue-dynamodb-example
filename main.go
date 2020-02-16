@@ -81,8 +81,12 @@ func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProx
 
 		fmt.Println(thing)
 
-		//Returning response with AWS Lambda Proxy Response
-		return events.APIGatewayProxyResponse{Body: "Success", StatusCode: 201}, nil
+		APIResponse := events.APIGatewayProxyResponse{
+			Body:       "Success",
+			StatusCode: 201,
+			Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
+		}
+		return APIResponse, nil
 	}
 	return events.APIGatewayProxyResponse{Body: "Nothing to do", StatusCode: 200}, nil
 }

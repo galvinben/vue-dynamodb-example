@@ -24,7 +24,7 @@ export default {
       .$get('https://6n7w1r95v5.execute-api.eu-west-2.amazonaws.com/dev/list')
       .then(response => {
         console.log(response)
-        this.list = JSON.parse(response.body)
+        this.list = response
       })
   }
 }
