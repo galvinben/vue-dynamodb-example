@@ -35,7 +35,7 @@ func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProx
 
 	tableName := "Things"
 
-	fmt.Println(request)
+	fmt.Println(request.HTTPMethod)
 
 	if request.HTTPMethod == "GET" {
 		filt := expression.Name("Category").Equal(expression.Value("general"))
