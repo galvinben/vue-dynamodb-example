@@ -35,7 +35,7 @@ func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProx
 
 	tableName := "Things"
 
-	if request.HTTPMethod == "GET" {
+	if request.HttpMethod == "GET" {
 		filt := expression.Name("Category").Equal(expression.Value("general"))
 		proj := expression.NamesList(expression.Name("Name"), expression.Name("Info"), expression.Name("Category"))
 		expr, err := expression.NewBuilder().WithFilter(filt).WithProjection(proj).Build()
@@ -70,7 +70,7 @@ func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProx
 			Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
 		}
 		return APIResponse, nil
-	} else if request.HTTPMethod == "POST" {
+	} else if request.HttpMethod == "POST" {
 		thing := Thing{}
 		err := json.Unmarshal([]byte(request.Body), &thing)
 		if err != nil {
