@@ -51,7 +51,7 @@ export default {
             {
               name: this.name,
               info: this.info,
-              category: 'category'
+              category: 'general'
             }
           )
           .then(response => {
