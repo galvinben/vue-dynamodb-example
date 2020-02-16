@@ -1,28 +1,31 @@
 <template>
-  <div>
-    <v-form ref="form" lazy-validation>
-      <v-text-field
-        v-model="name"
-        :counter="20"
-        :rules="nameRules"
-        label="Name"
-        required
-      ></v-text-field>
+  <v-card>
+    <v-card-title>Add New Thing</v-card-title>
+    <v-card-text>
+      <v-form ref="form" lazy-validation>
+        <v-text-field
+          v-model="name"
+          :counter="20"
+          :rules="nameRules"
+          label="Name"
+          required
+        ></v-text-field>
 
-      <v-text-field
-        v-model="info"
-        :rules="infoRules"
-        label="Info"
-        required
-      ></v-text-field>
+        <v-text-field
+          v-model="info"
+          :rules="infoRules"
+          label="Info"
+          required
+        ></v-text-field>
 
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="add">
-        Add
-      </v-btn>
-    </v-form>
-    <p v-if="success">Success</p>
-    <p v-if="failed">Failed</p>
-  </div>
+        <v-btn :disabled="!valid" color="success" class="mr-4" @click="add">
+          Add
+        </v-btn>
+      </v-form>
+      <p v-if="success">Success</p>
+      <p v-if="failed">Failed</p>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -64,3 +67,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.form-card {
+  padding: 10px;
+}
+</style>

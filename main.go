@@ -75,6 +75,7 @@ func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProx
 		return APIResponse, nil
 	} else if request.HTTPMethod == "POST" {
 		thing := Thing{}
+		fmt.Println(request.Body)
 		err := json.Unmarshal([]byte(request.Body), &thing)
 		if err != nil {
 			return events.APIGatewayProxyResponse{Body: err.Error(), StatusCode: 404}, nil
